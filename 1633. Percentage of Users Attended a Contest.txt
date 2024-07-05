@@ -1,0 +1,4 @@
+select contest_id, ROUND(IFNULL(count(Register.user_id)/(select count(user_id) from Users), 0), 4) * 100 as percentage
+from Register left join Users on Register.user_id = Users.user_id
+group by contest_id
+order by percentage desc, contest_id asc;
